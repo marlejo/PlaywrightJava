@@ -1,13 +1,13 @@
-package tests;
+package web.tests;
 
-import base.BaseTest;
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
 import org.testng.annotations.Test;
+import web.base.BaseWebTest;
 
-public class FirstTest extends BaseTest {
+public class FirstTest extends BaseWebTest {
 
     @Test
     public void verifyTitle(){

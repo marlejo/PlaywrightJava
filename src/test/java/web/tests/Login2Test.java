@@ -1,11 +1,11 @@
-package tests;
+package web.tests;
 
-import base.BaseTest;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
+import web.base.BaseWebTest;
+import web.pages.HomePage;
+import web.pages.LoginPage;
 
-public class Login2Test extends BaseTest {
+public class Login2Test extends BaseWebTest {
 
     LoginPage loginPage;
     HomePage homePage;
