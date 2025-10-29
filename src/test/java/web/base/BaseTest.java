@@ -19,16 +19,25 @@ public abstract class BaseTest {
     protected ExtentReports extent;
     protected ExtentTest test;
 
+
     @BeforeMethod
     public void setup(Method method) {
-        // Inicializar reportes
         extent = ExtentManager.getInstance();
         test = extent.createTest(method.getName());
 
-        // Inicializar Playwright
-        playwright = Playwright.create();
+        // Agregar categorías basadas en los grupos de TestNG
+        if (method.isAnnotationPresent(org.testng.annotations.Test.class)) {
+            org.testng.annotations.Test testAnnotation = method.getAnnotation(org.testng.annotations.Test.class);
+            String[] groups = testAnnotation.groups();
+            if (groups.length > 0) {
+                test.assignCategory(groups);
+            }
+        }
 
-        // Setup específico de cada tipo de test
+        // Agregar categoría del tipo de test (se sobrescribe en las clases hijas)
+        assignTestType();
+
+        playwright = Playwright.create();
         setupSpecific(method);
     }
 
@@ -44,6 +53,11 @@ public abstract class BaseTest {
         extent.flush();
         if (playwright != null) playwright.close();
     }
+
+    /**
+     * Método para asignar el tipo de test (se sobrescribe en las clases hijas)
+     */
+    protected abstract void assignTestType();
 
     /**
      * Setup específico para cada tipo de test (Web o API)

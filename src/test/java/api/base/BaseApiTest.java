@@ -56,6 +56,13 @@ public class BaseApiTest extends BaseTest{
         test.fail(result.getThrowable());
     }
 
+    @Override
+    protected void assignTestType() {
+        test.assignCategory("API");
+        test.assignAuthor("API Automation Team");
+        test.assignDevice("REST API");
+    }
+
     /**
      * Método helper para loguear request en el reporte
      */

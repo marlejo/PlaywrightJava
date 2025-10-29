@@ -54,6 +54,13 @@ public class BaseWebTest extends BaseTest{
         }
     }
 
+    @Override
+    protected void assignTestType() {
+        test.assignCategory("WEB UI");
+        test.assignAuthor("QA Automation Team");
+        test.assignDevice("Chrome Browser");
+    }
+
     private void initializePages() {
         Class<?> clazz = this.getClass();
 
